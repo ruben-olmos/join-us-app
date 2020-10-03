@@ -32,7 +32,7 @@ app.post("/register", function(req, res){
         res.redirect("/");
     });
 });
-
-app.listen(8080, function(){
-    console.log("Server running on 8080!");
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, ()=>{
+    console.log(`Server running on ${PORT}.`);
 });
