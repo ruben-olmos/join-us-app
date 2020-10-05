@@ -2,16 +2,11 @@ var express = require('express');
 var mysql = require('mysql');
 var bodyParser  = require("body-parser");
 var app = express();
+var connection = require("./db.js");
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
-
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  database : 'join_us'
-});
 
 app.get("/", function(req, res){
     // Find count of users in DB
@@ -33,6 +28,7 @@ app.post("/register", function(req, res){
     });
 });
 const PORT = process.env.PORT || 8080;
+
 app.listen(PORT, ()=>{
     console.log(`Server running on ${PORT}.`);
 });
